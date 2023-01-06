@@ -1,0 +1,73 @@
+{
+  "extends": ["react-app", "plugin:prettier/recommended"],
+  "rules": {
+    "no-var": "warn",
+    "no-multiple-empty-lines": "warn",
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "eqeqeq": "warn",
+    "dot-notation": "warn",
+    "no-unused-vars": "warn",
+    "react/destructuring-assignment": "warn",
+    "react/jsx-pascal-case": "warn",
+    "react/no-direct-mutation-state": "warn",
+    "react/jsx-no-useless-fragment": "warn",
+    "react/no-unused-state": "warn",
+    "react/jsx-key": "warn",
+    "react/self-closing-comp": "warn",
+    "react/jsx-curly-brace-presence": "warn",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          ["sibling", "parent", "index"],
+          "type",
+          "object",
+          "unknown"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "Components/**",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "Pages/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "assets/**",
+            "patternOptions": { "matchBase": true },
+            "group": "unknown",
+            "position": "before"
+          },
+          {
+            "pattern": "*.scss",
+            "patternOptions": { "matchBase": true },
+            "group": "unknown",
+            "position": "after"
+          },
+          {
+            "pattern": "./data",
+            "patternOptions": { "matchBase": true },
+            "group": "unknown",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  }
+}
