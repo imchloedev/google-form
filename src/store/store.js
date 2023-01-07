@@ -1,7 +1,10 @@
-import React from 'react';
+import { configureStore } from '@reduxjs/toolkit';
+import formReducer from '../slices/form';
+import questionReducer from '../slices/questions';
 
-const store = () => {
-  return <div />;
-};
-
-export default store;
+export const store = configureStore({
+  reducer: {
+    form: formReducer,
+    question: questionReducer,
+  },
+});
