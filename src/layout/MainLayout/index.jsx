@@ -5,7 +5,9 @@ import * as S from './style';
 const MainLayout = () => {
   return (
     <S.MainContainer>
-      <Outlet />
+      <S.MainWrapper>
+        <Outlet />
+      </S.MainWrapper>
     </S.MainContainer>
   );
 };
