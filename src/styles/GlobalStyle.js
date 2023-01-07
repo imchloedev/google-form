@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Noto Sans KR', sans-serif;
+    background-color: #f0ebf8;
   }
 
   a {
@@ -26,8 +27,8 @@ button {
 }
 
 input {
-  appearance: none;
   border-radius: 0;
+  border: none;
 }
 
 select,
