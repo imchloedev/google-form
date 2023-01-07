@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Noto Sans KR', sans-serif;
-    background-color: #f0ebf8;
+    background-color: rgba(25, 117, 210, 0.1);
   }
 
   a {
