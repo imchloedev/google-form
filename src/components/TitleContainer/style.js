@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
     padding: 24px;
   }
 
-  .edit_container {
+  .editContainer {
     input {
       display: block;
       width: 100%;
@@ -42,6 +42,26 @@ export const Wrapper = styled.div`
       &::placeholder {
         color: #555;
       }
+    }
+  }
+
+  .viewContainer {
+    .viewTitle {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .viewDescription {
+      font-size: 16px;
+    }
+
+    .resultMessage {
+      margin: 24px 0;
+    }
+
+    .backLink {
+      color: ${theme.colors.blue};
+      text-decoration: underline;
     }
   }
 `;

@@ -6,6 +6,7 @@ import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { IoMdCopy } from 'react-icons/io';
 import { IoTrashOutline } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import uuid from 'react-uuid';
 import * as QUESTION_MENU from '../../assets/data/QuestionMenu';
 import { questionActions } from '../../slices/questions';
@@ -24,6 +25,7 @@ export const menus = [
 const QuestionContainer = ({ question, questionId }) => {
   const questions = useSelector(state => state.question);
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
 
   console.log(questions);
 
@@ -77,10 +79,12 @@ const QuestionContainer = ({ question, questionId }) => {
     <S.Container>
       <div className="topBar">
         <input
-          className="questionTitle"
+          className="editQuestionTitle"
           placeholder="질문"
+          value={question.questionTitle}
           onChange={handleChangeTitle}
         />
+
         <SelectMenu menus={menus} questionId={questionId} question={question} />
       </div>
 

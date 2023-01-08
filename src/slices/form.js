@@ -1,7 +1,7 @@
 const { createSlice } = require('@reduxjs/toolkit');
 
 const initialState = {
-  title: '설문지 제목',
+  title: '제목 없는 설문지',
   description: '',
 };
 
@@ -18,4 +18,5 @@ const formSlice = createSlice({
 
 const formReducer = formSlice.reducer;
 
+export const formActions = formSlice.actions;
 export default formReducer;

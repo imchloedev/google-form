@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export const MainContainer = styled.div`
-  max-width: 640px;
+  position: relative;
+  max-width: 740px;
   margin: 20px auto;
 `;
 
 export const MainWrapper = styled.div`
-  padding: 0 10px;
+  padding: 0 80px;
 `;

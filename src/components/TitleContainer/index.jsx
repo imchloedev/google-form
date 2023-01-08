@@ -2,17 +2,15 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import * as S from './style';
 
-const TitleContainer = ({ info, onChangeInfo }) => {
+const TitleContainer = ({ info, onChangeInfo, children }) => {
   const location = useLocation();
   const { pathname } = location;
-
-  //  console.log(pathname);
 
   return (
     <S.Wrapper>
       <span className="divider" />
       {pathname === '/' ? (
-        <div className="edit_container">
+        <div className="editContainer">
           <input
             name="title"
             placeholder="설문지 제목"
@@ -27,9 +25,10 @@ const TitleContainer = ({ info, onChangeInfo }) => {
           />
         </div>
       ) : (
-        <div className="view_container">
-          <div>{info.title}</div>
-          <div>{info.description}</div>
+        <div className="viewContainer">
+          <div className="viewTitle">{info.title}</div>
+          <div className="viewDescription">{info.description}</div>
+          {children}
         </div>
       )}
     </S.Wrapper>

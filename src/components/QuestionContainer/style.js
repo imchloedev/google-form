@@ -9,20 +9,27 @@ export const Container = styled.div`
   border-radius: 8px;
 
   .topBar {
-    padding: 14px 24px;
+    padding: 20px 24px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     gap: 34px;
   }
 
-  .questionTitle {
+  .editQuestionTitle {
     width: 100%;
     height: 56px;
     background-color: #eee;
     padding: 16px;
     font-size: 16px;
     border-bottom: 2px solid ${theme.colors.blue};
+  }
+
+  .viewQuestionTitle {
+    width: 100%;
+    height: 56px;
+    padding: 16px 0;
+    font-size: 16px;
   }
 
   .divider {
@@ -35,7 +42,13 @@ export const Container = styled.div`
 
   .questionContentContainer {
     padding: 0 24px;
-    margin: 14px 0 40px 0;
+    margin: 0px 0 40px 0;
+  }
+
+  .viewContentContainer {
+    .css-1m9pwf3 {
+      position: static;
+    }
   }
 
   .bottomBar {

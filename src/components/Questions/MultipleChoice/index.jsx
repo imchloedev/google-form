@@ -19,6 +19,15 @@ const MultipleChoice = ({ option, questionId, optionId }) => {
     );
   };
 
+  const handleSetOneAnswer = e => {
+    dispatch(
+      questionActions.setOneAnswer({
+        id: questionId,
+        optionId: e.target.value,
+      })
+    );
+  };
+
   return (
     <S.Wrapper>
       {pathname === '/' ? (
@@ -31,19 +40,7 @@ const MultipleChoice = ({ option, questionId, optionId }) => {
         </div>
       ) : (
         <FormControlLabel
-          control={
-            <Radio
-              value={option.option}
-              onClick={e =>
-                dispatch(
-                  questionActions.setOneAnswer({
-                    id: questionId,
-                    optionId: e.target.value,
-                  })
-                )
-              }
-            />
-          }
+          control={<Radio value={option.option} onClick={handleSetOneAnswer} />}
           label={option.option}
         />
       )}
