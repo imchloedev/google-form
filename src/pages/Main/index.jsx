@@ -3,7 +3,6 @@ import AsideMenu from 'components/AsideMenu';
 import QuestionContainer from 'components/QuestionContainer';
 import TitleContainer from 'components/TitleContainer';
 import { useSelector } from 'react-redux';
-import * as S from './style';
 
 const Main = () => {
   const formInfo = useSelector(state => state.form);

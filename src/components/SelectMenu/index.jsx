@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FormControl, MenuItem, Select } from '@mui/material';
 import { HiOutlineMenuAlt2 } from 'react-icons/hi';
 import { IoIosArrowDropdown } from 'react-icons/io';
 import { IoMdRadioButtonOn } from 'react-icons/io';
 import { IoCheckboxOutline } from 'react-icons/io5';
 import { MdShortText } from 'react-icons/md';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { questionActions } from '../../slices/questions';
 import * as S from './style';
@@ -13,6 +13,7 @@ import * as S from './style';
 const SelectMenu = ({ menus, questionId, question }) => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
+  const { menuSelected } = question;
 
   const handleChangeMenu = e => {
     dispatch(
@@ -27,7 +28,7 @@ const SelectMenu = ({ menus, questionId, question }) => {
     <S.Wrapper>
       {pathname === '/' && (
         <FormControl sx={{ m: 1, width: 150 }}>
-          <Select value={question.menuSelected} onChange={handleChangeMenu}>
+          <Select value={menuSelected} onChange={handleChangeMenu}>
             {menus.map(menu => (
               <MenuItem key={menu.id} value={menu.id}>
                 <S.ItemWrapper>

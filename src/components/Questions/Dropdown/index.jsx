@@ -7,7 +7,6 @@ import * as S from './style';
 
 const Dropdown = ({ question, questionId, options }) => {
   const { pathname } = useLocation();
-  const questions = useSelector(state => state.question);
   const dispatch = useDispatch();
 
   const answer = question.answers.length > 0 ? question.answers[0] : '';

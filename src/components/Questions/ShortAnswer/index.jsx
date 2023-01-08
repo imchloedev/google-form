@@ -1,10 +1,10 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { questionActions } from 'slices/questions';
 import * as S from './style';
 
-const ShortAnswer = ({ questionId }) => {
+const ShortAnswer = ({ questionId, isRequired }) => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
 
@@ -24,7 +24,11 @@ const ShortAnswer = ({ questionId }) => {
           disabled
         />
       ) : (
-        <S.ShortInput placeholder="내 답변" onChange={onChangeSentenceAnswer} />
+        <S.ShortInput
+          placeholder="내 답변"
+          onChange={onChangeSentenceAnswer}
+          required={isRequired}
+        />
       )}
     </S.Wrapper>
   );

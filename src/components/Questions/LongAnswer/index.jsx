@@ -1,12 +1,11 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { questionActions } from 'slices/questions';
 import * as S from './style';
 
 const LongAnswer = ({ questionId }) => {
   const { pathname } = useLocation();
-  const questions = useSelector(state => state.question);
   const dispatch = useDispatch();
 
   const onChangeSentenceAnswer = e => {

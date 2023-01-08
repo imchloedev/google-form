@@ -25,20 +25,6 @@ const initialState = [
     answers: [],
     sentence: '',
   },
-  {
-    id: uuid(),
-    questionTitle: '제목없는 질문',
-    menuSelected: QUESTION_MENU.MULTIPLE_CHOICE,
-    isRequired: false,
-    options: [
-      {
-        id: 1,
-        option: '옵션 1',
-      },
-    ],
-    answers: [],
-    sentence: '',
-  },
 ];
 
 const questionSlice = createSlice({
@@ -46,13 +32,15 @@ const questionSlice = createSlice({
   initialState,
   reducers: {
     changeTitle: (state, action) => {
-      const selected = state.find(item => item.id === action.payload.id);
-      selected.questionTitle = action.payload.questionTitle;
+      const { id, questionTitle } = action.payload;
+      const selected = state.find(item => item.id === id);
+      selected.questionTitle = questionTitle;
     },
 
     changeMenu: (state, action) => {
-      const selected = state.find(item => item.id === action.payload.id);
-      selected.menuSelected = action.payload.menuSelected;
+      const { id, menuSelected } = action.payload;
+      const selected = state.find(item => item.id === id);
+      selected.menuSelected = menuSelected;
     },
 
     addQuestion: (state, action) => {
@@ -64,41 +52,41 @@ const questionSlice = createSlice({
     },
 
     changeOptionTitle: (state, action) => {
-      const selected = state.find(item => item.id === action.payload.id);
-      const filtered = selected.options.find(
-        option => option.id === action.payload.optionId
-      );
-      filtered.option = action.payload.optionValue;
+      const { id, optionId, optionValue } = action.payload;
+      const selected = state.find(item => item.id === id);
+      const filtered = selected.options.find(option => option.id === optionId);
+      filtered.option = optionValue;
     },
 
     addOption: (state, action) => {},
 
     setSentenceAnswer: (state, action) => {
-      const selected = state.find(item => item.id === action.payload.id);
-      selected.sentence = action.payload.sentence;
+      const { id, sentence } = action.payload;
+      const selected = state.find(item => item.id === id);
+      selected.sentence = sentence;
     },
 
     setOneAnswer: (state, action) => {
-      const selected = state.find(item => item.id === action.payload.id);
-      selected.answers.push(action.payload.optionId);
+      const { id, optionId } = action.payload;
+      const selected = state.find(item => item.id === id);
+      selected.answers.push(optionId);
       if (selected.answers.length > 1) {
         selected.answers.splice(0, 1);
       }
     },
 
     setMultipleAnswers: (state, action) => {
-      const selected = state.find(item => item.id === action.payload.id);
-      const checkedIdx = selected.answers.findIndex(
-        item => item === action.payload.optionId
-      );
+      const { id, optionId } = action.payload;
+      const selected = state.find(item => item.id === id);
+      const checkedIdx = selected.answers.findIndex(item => item === optionId);
 
       if (
         selected.answers.length > 0 &&
-        selected.answers[checkedIdx] === action.payload.optionId
+        selected.answers[checkedIdx] === optionId
       ) {
         selected.answers.splice(checkedIdx, 1);
       } else {
-        selected.answers.push(action.payload.optionId);
+        selected.answers.push(optionId);
       }
     },
 

@@ -5,8 +5,7 @@ import SelectMenu from 'components/SelectMenu';
 import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { IoMdCopy } from 'react-icons/io';
 import { IoTrashOutline } from 'react-icons/io5';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import uuid from 'react-uuid';
 import * as QUESTION_MENU from '../../assets/data/QuestionMenu';
 import { questionActions } from '../../slices/questions';
@@ -23,11 +22,9 @@ export const menus = [
 ];
 
 const QuestionContainer = ({ question, questionId }) => {
-  const questions = useSelector(state => state.question);
-  const dispatch = useDispatch();
-  const { pathname } = useLocation();
+  const { menuSelected, questionTitle, isRequired } = question;
 
-  console.log(questions);
+  const dispatch = useDispatch();
 
   const newQuestion = {
     ...question,
@@ -56,20 +53,20 @@ const QuestionContainer = ({ question, questionId }) => {
   };
 
   const getQuestionContent = () => {
-    if (question.menuSelected === QUESTION_MENU.SHORT_ANSWER) {
+    if (menuSelected === QUESTION_MENU.SHORT_ANSWER) {
       return <ShortAnswer questionId={questionId} />;
-    } else if (question.menuSelected === QUESTION_MENU.LONG_ANSWER) {
+    } else if (menuSelected === QUESTION_MENU.LONG_ANSWER) {
       return <LongAnswer questionId={questionId} />;
     } else if (
-      question.menuSelected === QUESTION_MENU.MULTIPLE_CHOICE ||
-      question.menuSelected === QUESTION_MENU.CHECKBOX ||
-      question.menuSelected === QUESTION_MENU.DROPDOWN
+      menuSelected === QUESTION_MENU.MULTIPLE_CHOICE ||
+      menuSelected === QUESTION_MENU.CHECKBOX ||
+      menuSelected === QUESTION_MENU.DROPDOWN
     ) {
       return (
         <OptionContainer
           question={question}
           questionId={questionId}
-          questionType={question.menuSelected}
+          questionType={menuSelected}
         />
       );
     }
@@ -81,7 +78,7 @@ const QuestionContainer = ({ question, questionId }) => {
         <input
           className="editQuestionTitle"
           placeholder="질문"
-          value={question.questionTitle}
+          value={questionTitle}
           onChange={handleChangeTitle}
         />
 
@@ -100,9 +97,7 @@ const QuestionContainer = ({ question, questionId }) => {
         <span className="divider" />
         <FormGroup>
           <FormControlLabel
-            control={
-              <Switch checked={question.isRequired} onChange={handleSwitch} />
-            }
+            control={<Switch checked={isRequired} onChange={handleSwitch} />}
             label="필수"
             labelPlacement="start"
           />

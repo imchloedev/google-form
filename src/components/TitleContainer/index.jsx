@@ -5,6 +5,7 @@ import * as S from './style';
 const TitleContainer = ({ info, onChangeInfo, children }) => {
   const location = useLocation();
   const { pathname } = location;
+  const { title, description } = info;
 
   return (
     <S.Wrapper>
@@ -14,20 +15,20 @@ const TitleContainer = ({ info, onChangeInfo, children }) => {
           <input
             name="title"
             placeholder="설문지 제목"
-            value={info.title}
+            value={title}
             onChange={onChangeInfo}
           />
           <input
             name="description"
             placeholder="설문지 설명"
-            value={info.description}
+            value={description}
             onChange={onChangeInfo}
           />
         </div>
       ) : (
         <div className="viewContainer">
-          <div className="viewTitle">{info.title}</div>
-          <div className="viewDescription">{info.description}</div>
+          <div className="viewTitle">{title}</div>
+          <div className="viewDescription">{description}</div>
           {children}
         </div>
       )}

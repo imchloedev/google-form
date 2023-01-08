@@ -88,4 +88,9 @@ export const Container = styled.div`
   .css-1f2kvjf-MuiFormControlLabel-root {
     margin: 0;
   }
+
+  .isRequired {
+    color: ${theme.colors.red};
+    margin-left: 5px;
+  }
 `;

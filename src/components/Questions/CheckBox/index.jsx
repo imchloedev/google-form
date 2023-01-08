@@ -1,13 +1,12 @@
 import React from 'react';
-import { Checkbox, FormControlLabel, FormGroup } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
+import { Checkbox, FormControlLabel } from '@mui/material';
+import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { questionActions } from '../../../slices/questions';
 import * as S from './style';
 
 const CheckBox = ({ option, questionId, optionId }) => {
   const { pathname } = useLocation();
-  const questions = useSelector(state => state.question);
   const dispatch = useDispatch();
 
   const onChangeOptionTitle = e => {
