@@ -73,7 +73,10 @@ const questionSlice = createSlice({
 
     addOption: (state, action) => {},
 
-    setSentence: (state, action) => {},
+    setSentenceAnswer: (state, action) => {
+      const selected = state.find(item => item.id === action.payload.id);
+      selected.sentence = action.payload.sentence;
+    },
 
     setOneAnswer: (state, action) => {
       const selected = state.find(item => item.id === action.payload.id);

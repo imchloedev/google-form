@@ -55,9 +55,9 @@ const QuestionContainer = ({ question, questionId }) => {
 
   const getQuestionContent = () => {
     if (question.menuSelected === QUESTION_MENU.SHORT_ANSWER) {
-      return <ShortAnswer />;
+      return <ShortAnswer questionId={questionId} />;
     } else if (question.menuSelected === QUESTION_MENU.LONG_ANSWER) {
-      return <LongAnswer />;
+      return <LongAnswer questionId={questionId} />;
     } else if (
       question.menuSelected === QUESTION_MENU.MULTIPLE_CHOICE ||
       question.menuSelected === QUESTION_MENU.CHECKBOX ||
