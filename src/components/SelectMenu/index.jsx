@@ -6,15 +6,13 @@ import { IoMdRadioButtonOn } from 'react-icons/io';
 import { IoCheckboxOutline } from 'react-icons/io5';
 import { MdShortText } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { questionActions } from '../../slices/questions';
 import * as S from './style';
 
 const SelectMenu = ({ menus, questionId, question }) => {
-  const questions = useSelector(state => state.question);
   const dispatch = useDispatch();
-  const [menu, setMenu] = useState(3);
-
-  // console.log(question);
+  const { pathname } = useLocation();
 
   const handleChangeMenu = e => {
     dispatch(
@@ -27,25 +25,27 @@ const SelectMenu = ({ menus, questionId, question }) => {
 
   return (
     <S.Wrapper>
-      <FormControl sx={{ m: 1, width: 150 }}>
-        <Select value={question.menuSelected} onChange={handleChangeMenu}>
-          {menus.map(menu => (
-            <MenuItem key={menu.id} value={menu.id}>
-              <S.ItemWrapper>
-                {menuIcon.map(
-                  icon =>
-                    menu.id === icon.id && (
-                      <div className="iconWrapper" key={icon.id}>
-                        {icon.iconElement}
-                      </div>
-                    )
-                )}
-                <span>{menu.option}</span>
-              </S.ItemWrapper>
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+      {pathname === '/' && (
+        <FormControl sx={{ m: 1, width: 150 }}>
+          <Select value={question.menuSelected} onChange={handleChangeMenu}>
+            {menus.map(menu => (
+              <MenuItem key={menu.id} value={menu.id}>
+                <S.ItemWrapper>
+                  {menuIcon.map(
+                    icon =>
+                      menu.id === icon.id && (
+                        <div className="iconWrapper" key={icon.id}>
+                          {icon.iconElement}
+                        </div>
+                      )
+                  )}
+                  <span>{menu.option}</span>
+                </S.ItemWrapper>
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      )}
     </S.Wrapper>
   );
 };

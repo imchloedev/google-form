@@ -1,27 +1,51 @@
 import React from 'react';
-import { Radio, FormGroup, FormControlLabel } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
+import { Radio, FormControlLabel } from '@mui/material';
+import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import { questionActions } from '../../../slices/questions';
 import * as S from './style';
 
-const MultipleChoice = () => {
+const MultipleChoice = ({ option, questionId, optionId }) => {
   const { pathname } = useLocation();
-  const questions = useSelector(state => state.question);
   const dispatch = useDispatch();
+
+  const onChangeOptionTitle = e => {
+    dispatch(
+      questionActions.changeOptionTitle({
+        id: questionId,
+        optionValue: e.target.value,
+        optionId,
+      })
+    );
+  };
 
   return (
     <S.Wrapper>
       {pathname === '/' ? (
-        <div className="editRadio">
-          <div>
-            <Radio disabled />
-            <S.InputLabel value="옵션 1" />
-          </div>
+        <div className="editChoiceWrapper">
+          <Radio disabled />
+          <S.InputLabel
+            placeholder={option.option}
+            onChange={onChangeOptionTitle}
+          />
         </div>
       ) : (
-        <FormGroup>
-          <FormControlLabel control={<Radio />} label="옵션 1" />
-        </FormGroup>
+        <FormControlLabel
+          control={
+            <Radio
+              value={option.option}
+              onClick={e =>
+                dispatch(
+                  questionActions.setOneAnswer({
+                    id: questionId,
+                    optionId: e.target.value,
+                  })
+                )
+              }
+            />
+          }
+          label={option.option}
+        />
       )}
     </S.Wrapper>
   );

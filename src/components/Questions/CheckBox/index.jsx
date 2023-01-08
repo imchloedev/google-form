@@ -5,35 +5,48 @@ import { useLocation } from 'react-router-dom';
 import { questionActions } from '../../../slices/questions';
 import * as S from './style';
 
-const CheckBox = ({ question, isLast }) => {
+const CheckBox = ({ option, questionId, optionId }) => {
   const { pathname } = useLocation();
   const questions = useSelector(state => state.question);
   const dispatch = useDispatch();
 
-  const { options, id } = question;
+  const onChangeOptionTitle = e => {
+    dispatch(
+      questionActions.changeOptionTitle({
+        id: questionId,
+        optionValue: e.target.value,
+        optionId,
+      })
+    );
+  };
 
   return (
     <S.Wrapper>
       {pathname === '/' ? (
-        options
-          .map(option => (
-            <div className="editCheckbox" key={option.id}>
-              <div>
-                <Checkbox disabled />
-                <S.InputLabel value={option.option} />
-              </div>
-            </div>
-          ))
-          .concat(
-            <div>
-              <Checkbox disabled />
-              <S.InputLabel value="옵션추가" />
-            </div>
-          )
+        <div className="editCheckboxWrapper">
+          <Checkbox disabled />
+          <S.InputLabel
+            placeholder={option.option}
+            onChange={onChangeOptionTitle}
+          />
+        </div>
       ) : (
-        <FormGroup>
-          <FormControlLabel control={<Checkbox />} label="옵션 1" />
-        </FormGroup>
+        <FormControlLabel
+          control={
+            <Checkbox
+              value={option.option}
+              onClick={e =>
+                dispatch(
+                  questionActions.setMultipleAnswers({
+                    id: questionId,
+                    optionId: e.target.value,
+                  })
+                )
+              }
+            />
+          }
+          label={option.option}
+        />
       )}
     </S.Wrapper>
   );

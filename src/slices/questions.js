@@ -13,7 +13,17 @@ const initialState = [
         id: 1,
         option: '옵션 1',
       },
+      {
+        id: 2,
+        option: '옵션 2',
+      },
+      {
+        id: 3,
+        option: '옵션 3',
+      },
     ],
+    answers: [],
+    sentence: '',
   },
   {
     id: uuid(),
@@ -26,6 +36,8 @@ const initialState = [
         option: '옵션 1',
       },
     ],
+    answers: [],
+    sentence: '',
   },
 ];
 
@@ -40,7 +52,7 @@ const questionSlice = createSlice({
 
     changeMenu: (state, action) => {
       const selected = state.find(item => item.id === action.payload.id);
-      selected && (selected.menuSelected = action.payload.menuSelected);
+      selected.menuSelected = action.payload.menuSelected;
     },
 
     addQuestion: (state, action) => {
@@ -51,7 +63,41 @@ const questionSlice = createSlice({
       return state.filter(item => item.id !== action.payload);
     },
 
+    changeOptionTitle: (state, action) => {
+      const selected = state.find(item => item.id === action.payload.id);
+      const filtered = selected.options.find(
+        option => option.id === action.payload.optionId
+      );
+      filtered.option = action.payload.optionValue;
+    },
+
     addOption: (state, action) => {},
+
+    setSentence: (state, action) => {},
+
+    setOneAnswer: (state, action) => {
+      const selected = state.find(item => item.id === action.payload.id);
+      selected.answers.push(action.payload.optionId);
+      if (selected.answers.length > 1) {
+        selected.answers.splice(0, 1);
+      }
+    },
+
+    setMultipleAnswers: (state, action) => {
+      const selected = state.find(item => item.id === action.payload.id);
+      const checkedIdx = selected.answers.findIndex(
+        item => item === action.payload.optionId
+      );
+
+      if (
+        selected.answers.length > 0 &&
+        selected.answers[checkedIdx] === action.payload.optionId
+      ) {
+        selected.answers.splice(checkedIdx, 1);
+      } else {
+        selected.answers.push(action.payload.optionId);
+      }
+    },
 
     changeSwitch: (state, action) => {
       const selected = state.find(item => item.id === action.payload);

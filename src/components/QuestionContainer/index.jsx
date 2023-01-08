@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormControlLabel, FormGroup, Switch } from '@mui/material';
+import OptionContainer from 'components/OptionContainer';
 import SelectMenu from 'components/SelectMenu';
 import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { IoMdCopy } from 'react-icons/io';
@@ -8,10 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import uuid from 'react-uuid';
 import * as QUESTION_MENU from '../../assets/data/QuestionMenu';
 import { questionActions } from '../../slices/questions';
-import CheckBox from '../Questions/CheckBox';
-import Dropdown from '../Questions/Dropdown';
 import LongAnswer from '../Questions/LongAnswer';
-import MultipleChoice from '../Questions/MultipleChoice';
 import ShortAnswer from '../Questions/ShortAnswer';
 import * as S from './style';
 
@@ -28,11 +26,6 @@ const QuestionContainer = ({ question, questionId }) => {
   const dispatch = useDispatch();
 
   console.log(questions);
-  // 하나의 question 필요
-  // const activeQuestion = questions.find(q => q.id === questionId);
-  // console.log(question);
-
-  // console.log(activeQuestion);
 
   const newQuestion = {
     ...question,
@@ -65,12 +58,18 @@ const QuestionContainer = ({ question, questionId }) => {
       return <ShortAnswer />;
     } else if (question.menuSelected === QUESTION_MENU.LONG_ANSWER) {
       return <LongAnswer />;
-    } else if (question.menuSelected === QUESTION_MENU.MULTIPLE_CHOICE) {
-      return <MultipleChoice />;
-    } else if (question.menuSelected === QUESTION_MENU.CHECKBOX) {
-      return <CheckBox question={question} />;
-    } else if (question.menuSelected === QUESTION_MENU.DROPDOWN) {
-      return <Dropdown />;
+    } else if (
+      question.menuSelected === QUESTION_MENU.MULTIPLE_CHOICE ||
+      question.menuSelected === QUESTION_MENU.CHECKBOX ||
+      question.menuSelected === QUESTION_MENU.DROPDOWN
+    ) {
+      return (
+        <OptionContainer
+          question={question}
+          questionId={questionId}
+          questionType={question.menuSelected}
+        />
+      );
     }
   };
 
