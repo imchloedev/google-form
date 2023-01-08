@@ -2,7 +2,7 @@ import React from 'react';
 import { FormGroup, FormControl, RadioGroup } from '@mui/material';
 import CheckBox from 'components/Questions/CheckBox';
 import Dropdown from 'components/Questions/Dropdown';
-import MultipleChoice from 'Questions/MultipleChoice';
+import MultipleChoice from 'components/Questions/MultipleChoice';
 import * as S from './style';
 import * as QUESTION_MENU from 'assets/data/QuestionMenu';
 

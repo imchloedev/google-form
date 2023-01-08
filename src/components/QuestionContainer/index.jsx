@@ -1,9 +1,9 @@
 import React from 'react';
 import { FormControlLabel, FormGroup, Switch } from '@mui/material';
 import OptionContainer from 'components/OptionContainer';
+import LongAnswer from 'components/Questions/LongAnswer';
+import ShortAnswer from 'components/Questions/ShortAnswer';
 import SelectMenu from 'components/SelectMenu';
-import LongAnswer from 'Questions/LongAnswer';
-import ShortAnswer from 'Questions/ShortAnswer';
 import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { IoMdCopy } from 'react-icons/io';
 import { IoTrashOutline } from 'react-icons/io5';
