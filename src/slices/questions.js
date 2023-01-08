@@ -33,14 +33,26 @@ const questionSlice = createSlice({
   name: 'question',
   initialState,
   reducers: {
-    changeMenu: (state, action) => {},
+    changeTitle: (state, action) => {
+      const selected = state.find(item => item.id === action.payload.id);
+      selected.questionTitle = action.payload.questionTitle;
+    },
+
+    changeMenu: (state, action) => {
+      const selected = state.find(item => item.id === action.payload.id);
+      selected && (selected.menuSelected = action.payload.menuSelected);
+    },
+
     addQuestion: (state, action) => {
       return state.concat(action.payload);
     },
+
     deleteQuestion: (state, action) => {
       return state.filter(item => item.id !== action.payload);
     },
+
     addOption: (state, action) => {},
+
     changeSwitch: (state, action) => {
       const selected = state.find(item => item.id === action.payload);
       selected.isRequired = !selected.isRequired;
