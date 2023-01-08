@@ -7,7 +7,7 @@ import { IoCheckboxOutline } from 'react-icons/io5';
 import { MdShortText } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { questionActions } from '../../slices/questions';
+import { questionActions } from 'slices/questions';
 import * as S from './style';
 
 const SelectMenu = ({ menus, questionId, question }) => {

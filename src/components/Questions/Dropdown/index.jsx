@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FormControl, Select, MenuItem } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { questionActions } from '../../../slices/questions';
+import { questionActions } from 'slices/questions';
 import * as S from './style';
 
 const Dropdown = ({ question, questionId, options }) => {

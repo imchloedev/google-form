@@ -2,7 +2,7 @@ import React from 'react';
 import OptionContainer from 'components/OptionContainer';
 import LongAnswer from 'components/Questions/LongAnswer';
 import ShortAnswer from 'components/Questions/ShortAnswer';
-import { Container } from '../QuestionContainer/style';
+import { Container } from 'QuestionContainer/style';
 import * as QUESTION_MENU from 'assets/data/QuestionMenu';
 
 const ViewContainer = ({ questionId, question }) => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Checkbox, FormControlLabel } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { questionActions } from '../../../slices/questions';
+import { questionActions } from 'slices/questions';
 import * as S from './style';
 
 const CheckBox = ({ option, questionId, optionId }) => {

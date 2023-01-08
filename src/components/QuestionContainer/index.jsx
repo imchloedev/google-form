@@ -2,16 +2,16 @@ import React from 'react';
 import { FormControlLabel, FormGroup, Switch } from '@mui/material';
 import OptionContainer from 'components/OptionContainer';
 import SelectMenu from 'components/SelectMenu';
+import LongAnswer from 'Questions/LongAnswer';
+import ShortAnswer from 'Questions/ShortAnswer';
 import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { IoMdCopy } from 'react-icons/io';
 import { IoTrashOutline } from 'react-icons/io5';
 import { useDispatch } from 'react-redux';
 import uuid from 'react-uuid';
-import * as QUESTION_MENU from '../../assets/data/QuestionMenu';
-import { questionActions } from '../../slices/questions';
-import LongAnswer from '../Questions/LongAnswer';
-import ShortAnswer from '../Questions/ShortAnswer';
+import { questionActions } from 'slices/questions';
 import * as S from './style';
+import * as QUESTION_MENU from 'assets/data/QuestionMenu';
 
 export const menus = [
   { id: QUESTION_MENU.SHORT_ANSWER, option: '단답형' },

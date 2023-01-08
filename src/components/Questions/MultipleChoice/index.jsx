@@ -2,7 +2,7 @@ import React from 'react';
 import { Radio, FormControlLabel } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { questionActions } from '../../../slices/questions';
+import { questionActions } from 'slices/questions';
 import * as S from './style';
 
 const MultipleChoice = ({ option, questionId, optionId }) => {

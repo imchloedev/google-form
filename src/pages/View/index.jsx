@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button } from '@mui/material';
 import TitleContainer from 'components/TitleContainer';
+import ViewContainer from 'components/ViewContainer/index';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import ViewContainer from '../../components/ViewContainer/index';
 import * as S from './style';
 
 const View = () => {

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import uuid from 'react-uuid';
-import * as QUESTION_MENU from '../assets/data/QuestionMenu';
+import * as QUESTION_MENU from 'assets/data/QuestionMenu';
 
 const initialState = [
   {
