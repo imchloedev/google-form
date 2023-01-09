@@ -3,8 +3,8 @@ import { FormGroup, FormControl, RadioGroup } from '@mui/material';
 import CheckBox from 'components/Questions/CheckBox';
 import Dropdown from 'components/Questions/Dropdown';
 import MultipleChoice from 'components/Questions/MultipleChoice';
+import * as QUESTION_MENU from 'lib/questionMenu';
 import * as S from './style';
-import * as QUESTION_MENU from 'assets/data/QuestionMenu';
 
 const OptionContainer = ({ question, questionType, questionId }) => {
   const getOptionList = () => {

@@ -1,4 +1,5 @@
 import React from 'react';
+import * as QUESTION_MENU from 'lib/questionMenu.js';
 import { BsPlusCircle } from 'react-icons/bs';
 import { GrView } from 'react-icons/gr';
 import { useDispatch } from 'react-redux';
@@ -7,7 +8,6 @@ import uuid from 'react-uuid';
 import { formActions } from 'slices/form';
 import { questionActions } from 'slices/questions';
 import * as S from './style';
-import * as QUESTION_MENU from 'assets/data/QuestionMenu.js';
 
 const AsideMenu = ({ info }) => {
   const dispatch = useDispatch();

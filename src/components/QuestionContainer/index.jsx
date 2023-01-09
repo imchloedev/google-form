@@ -4,6 +4,7 @@ import OptionContainer from 'components/OptionContainer';
 import LongAnswer from 'components/Questions/LongAnswer';
 import ShortAnswer from 'components/Questions/ShortAnswer';
 import SelectMenu from 'components/SelectMenu';
+import * as QUESTION_MENU from 'lib/questionMenu';
 import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { IoMdCopy } from 'react-icons/io';
 import { IoTrashOutline } from 'react-icons/io5';
@@ -11,7 +12,6 @@ import { useDispatch } from 'react-redux';
 import uuid from 'react-uuid';
 import { questionActions } from 'slices/questions';
 import * as S from './style';
-import * as QUESTION_MENU from 'assets/data/QuestionMenu';
 
 export const menus = [
   { id: QUESTION_MENU.SHORT_ANSWER, option: '단답형' },

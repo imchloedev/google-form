@@ -3,7 +3,7 @@ import OptionContainer from 'components/OptionContainer';
 import { Container } from 'components/QuestionContainer/style';
 import LongAnswer from 'components/Questions/LongAnswer';
 import ShortAnswer from 'components/Questions/ShortAnswer';
-import * as QUESTION_MENU from 'assets/data/QuestionMenu';
+import * as QUESTION_MENU from 'lib/questionMenu';
 
 const ViewContainer = ({ questionId, question }) => {
   const { menuSelected, questionTitle, isRequired } = question;
