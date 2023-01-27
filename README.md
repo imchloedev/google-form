@@ -1,4 +1,4 @@
-# [클라썸] 구글 설문조사 Clone 만들기
+# 구글 설문조사 Clone 코딩
 
 ## Duration
 
