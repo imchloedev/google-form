@@ -58,8 +58,6 @@ const questionSlice = createSlice({
       filtered.option = optionValue;
     },
 
-    addOption: (state, action) => {},
-
     setSentenceAnswer: (state, action) => {
       const { id, sentence } = action.payload;
       const selected = state.find(item => item.id === id);
@@ -67,32 +65,48 @@ const questionSlice = createSlice({
     },
 
     setOneAnswer: (state, action) => {
-      const { id, optionId } = action.payload;
+      const { id, optionContent, isAnswer } = action.payload;
       const selected = state.find(item => item.id === id);
-      selected.answers.push(optionId);
-      if (selected.answers.length > 1) {
-        selected.answers.splice(0, 1);
+      if (!selected) return;
+      selected.answers.length > 0 && selected.answers.splice(-1, 1);
+      if (!isAnswer) {
+        selected.answers.push(optionContent);
       }
     },
 
     setMultipleAnswers: (state, action) => {
-      const { id, optionId } = action.payload;
+      const { id, isAnswer, optionContent } = action.payload;
       const selected = state.find(item => item.id === id);
-      const checkedIdx = selected.answers.findIndex(item => item === optionId);
+      const checkedIdx = selected.answers.findIndex(
+        item => item === optionContent
+      );
 
-      if (
-        selected.answers.length > 0 &&
-        selected.answers[checkedIdx] === optionId
-      ) {
-        selected.answers.splice(checkedIdx, 1);
+      if (!isAnswer) {
+        selected.answers.push(optionContent);
       } else {
-        selected.answers.push(optionId);
+        if (checkedIdx === 0) selected.answers.shift();
+        else selected.answers.splice(checkedIdx, 1);
       }
+    },
+
+    addOption: (state, action) => {
+      const { id, optionId } = action.payload;
+      const questionIdx = state.findIndex(item => item.id === id);
+      state[questionIdx].options.push({
+        id: optionId,
+        option: `옵션 ${optionId}`,
+      });
     },
 
     changeSwitch: (state, action) => {
       const selected = state.find(item => item.id === action.payload);
       selected.isRequired = !selected.isRequired;
+    },
+
+    reorderQuestion: (state, action) => {
+      const { firstIdx, secondIdx } = action.payload;
+      const [removed] = state.splice(firstIdx, 1);
+      state.splice(secondIdx, 0, removed);
     },
   },
 });

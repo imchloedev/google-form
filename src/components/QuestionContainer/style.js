@@ -8,6 +8,19 @@ export const Container = styled.div`
   border: 1px solid #dadce0;
   border-radius: 8px;
 
+  .handler {
+    width: 24px;
+    height: 24px;
+    margin: 10px auto 0 auto;
+
+    & svg {
+      width: 24px;
+      height: 24px;
+      color: #999;
+      transform: rotate(90deg);
+    }
+  }
+
   .topBar {
     padding: 20px 24px;
     display: flex;

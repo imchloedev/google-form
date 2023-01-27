@@ -8,6 +8,7 @@ import * as QUESTION_MENU from 'lib/questionMenu';
 import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { IoMdCopy } from 'react-icons/io';
 import { IoTrashOutline } from 'react-icons/io5';
+import { RxDragHandleDots2 } from 'react-icons/rx';
 import { useDispatch } from 'react-redux';
 import uuid from 'react-uuid';
 import { questionActions } from 'slices/questions';
@@ -21,9 +22,8 @@ export const menus = [
   { id: QUESTION_MENU.DROPDOWN, option: '드롭다운' },
 ];
 
-const QuestionContainer = ({ question, questionId }) => {
-  const { menuSelected, questionTitle, isRequired } = question;
-
+const QuestionContainer = ({ question, questionId, provided }) => {
+  const { menuSelected, questionTitle, isRequired, options } = question;
   const dispatch = useDispatch();
 
   const newQuestion = {
@@ -52,28 +52,53 @@ const QuestionContainer = ({ question, questionId }) => {
     dispatch(questionActions.changeSwitch(questionId));
   };
 
-  const getQuestionContent = () => {
-    if (menuSelected === QUESTION_MENU.SHORT_ANSWER) {
-      return <ShortAnswer questionId={questionId} />;
-    } else if (menuSelected === QUESTION_MENU.LONG_ANSWER) {
-      return <LongAnswer questionId={questionId} />;
-    } else if (
-      menuSelected === QUESTION_MENU.MULTIPLE_CHOICE ||
-      menuSelected === QUESTION_MENU.CHECKBOX ||
-      menuSelected === QUESTION_MENU.DROPDOWN
-    ) {
-      return (
+  const getOptionList = type => {
+    const optionList = options
+      .map(option => (
         <OptionContainer
-          question={question}
+          key={option.id}
           questionId={questionId}
-          questionType={menuSelected}
+          option={option}
+          optionId={option.id}
+          optionContent={option.option}
+          questionType={type}
+          isLast={false}
+        />
+      ))
+      .concat(
+        <OptionContainer
+          key={options.length + 1}
+          questionId={questionId}
+          optionId={options.length + 1}
+          questionType={type}
+          optionContent="옵션 추가"
+          isLast={true}
         />
       );
+
+    return optionList;
+  };
+
+  const getQuestionContent = () => {
+    switch (menuSelected) {
+      case QUESTION_MENU.SHORT_ANSWER:
+        return <ShortAnswer questionId={questionId} />;
+      case QUESTION_MENU.LONG_ANSWER:
+        return <LongAnswer questionId={questionId} />;
+      case QUESTION_MENU.MULTIPLE_CHOICE:
+      case QUESTION_MENU.CHECKBOX:
+      case QUESTION_MENU.DROPDOWN:
+        return getOptionList(menuSelected);
+      default:
+        return;
     }
   };
 
   return (
     <S.Container>
+      <div className="handler" {...provided.dragHandleProps}>
+        <RxDragHandleDots2 />
+      </div>
       <div className="topBar">
         <input
           className="editQuestionTitle"
